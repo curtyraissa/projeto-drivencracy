@@ -43,8 +43,10 @@ export async function getOpcaoVoto(req, res){
 }
 
 export async function createVoto(req, res){
+    const {id} =req.params
     try {
-
+        await db.collection("voto").insertOne({createdAt: dayjs().format("YYYY-MM-DD HH:mm"), choiceId: id})
+        res.sendStatus(201)
     } catch (err) {
         res.status(500).send(err.message)
     }

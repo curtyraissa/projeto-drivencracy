@@ -7,14 +7,14 @@ export const enqueteSchema = joi.object({
 })
 
 
-// //Opcao de voto
+//Opcao de voto
 export const opcaoDeVotoSchema = joi.object({
 	title: joi.string().required(), 
 	pollId: joi.string().required(), 
 })
 
 
-// //Voto
+//Voto
 // { 
 // 	createdAt: "2022-02-13 01:00", 
 // 	choiceId: ObjectId("54759eb3c090d83494e2d999"), 
