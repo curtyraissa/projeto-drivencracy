@@ -3,15 +3,15 @@ import joi from "joi"
 //Enquete
 export const enqueteSchema = joi.object({
 	title: joi.string().required(), 
-	// expireAt: joi.required()
+	expireAt: joi.allow("")
 })
 
 
 // //Opcao de voto
-// { 
-// 	title: joi.string().required(), 
-// 	pollId: joi.string().required(), 
-// }
+export const opcaoDeVotoSchema = joi.object({
+	title: joi.string().required(), 
+	pollId: joi.string().required(), 
+})
 
 
 // //Voto

@@ -24,8 +24,11 @@ export async function getEnquete(req, res){
 }
 
 export async function createOpcaoVoto(req, res){
-    try {
+    const {title, pollId} = req.body
 
+    try {
+        await db.collection("opcaoDeVoto").insertOne({title, PollId})
+        res.sendStatus(201)
     } catch (err) {
         res.status(500).send(err.message)
     }
