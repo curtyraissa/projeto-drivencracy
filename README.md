@@ -4,10 +4,10 @@
 
 ✅ Requisitos
 - Geral
-    - [ ]  A porta utilizada pelo seu servidor deve ser a 5000 (isso facilita nossa avaliação 🙂).
-    - [ ]  Versionamento usando Git é obrigatório. Crie um **repositório** no seu perfil do GitHub.
-    - [ ]  Faça commits a cada funcionalidade implementada.
-    - [ ]  Utilize dotenv.
+    - [x]  A porta utilizada pelo seu servidor deve ser a 5000 (isso facilita nossa avaliação 🙂).
+    - [x]  Versionamento usando Git é obrigatório. Crie um **repositório** no seu perfil do GitHub.
+    - [x]  Faça commits a cada funcionalidade implementada.
+    - [x]  Utilize dotenv.
     - [ ]  O deploy da API deve ser feito no Render e do banco no MongoDB Atlas.
 - Armazenamento de dados
     - Para persistir os dados (enquete, opção de voto e voto), utilize coleções do Mongo com a biblioteca `mongodb`.
@@ -42,7 +42,7 @@
         ```
         
 - **POST** `/poll`
-    - [ ]  Deve receber pelo body da request, um parâmetro title, contendo o nome da enquete a ser cadastrada e expireAt, contendo a data e hora de expiração da enquete:
+    - [x]  Deve receber pelo body da request, um parâmetro title, contendo o nome da enquete a ser cadastrada e expireAt, contendo a data e hora de expiração da enquete:
         
         ```jsx
         {
@@ -51,11 +51,11 @@
         }
         ```
         
-    - [ ]  **Title** não pode ser uma string vazia, retornar status 422.
-    - [ ]  Se **expireAt** for vazio deve ser considerado 30 dias de enquete por padrão.
-    - [ ]  Deve retornar a enquete criada em caso de sucesso com status 201.
+    - [x]  **Title** não pode ser uma string vazia, retornar status 422.
+    - [x]  Se **expireAt** for vazio deve ser considerado 30 dias de enquete por padrão.
+    - [x]  Deve retornar a enquete criada em caso de sucesso com status 201.
 - **GET** `/poll`
-    - [ ]  Retorna a lista de todas as enquetes:
+    - [x]  Retorna a lista de todas as enquetes:
     
     ```jsx
     [
@@ -69,7 +69,7 @@
     ```
     
 - **POST** `/choice`
-    - [ ]  Deve receber pelo body da request, um parâmetro title, contendo o nome da opção a ser cadastrada e pollId.
+    - [x]  Deve receber pelo body da request, um parâmetro title, contendo o nome da opção a ser cadastrada e pollId.
         
         ```jsx
         {
@@ -79,13 +79,13 @@
         ```
         
     - Validação:
-        - [ ]  Uma opção de voto não pode ser inserida sem uma enquete existente, retornar status 404.
-        - [ ]  **Title** não pode ser uma string vazia, retornar status 422.
+        - [x]  Uma opção de voto não pode ser inserida sem uma enquete existente, retornar status 404.
+        - [x]  **Title** não pode ser uma string vazia, retornar status 422.
         - [ ]  **Title** não pode ser repetido, retornar status 409.
         - [ ]  Se a enquete já estiver expirado deve retornar erro com status 403.
-    - [ ]  Deve retornar a opção de voto criada em caso de sucesso com status 201.
+    - [x]  Deve retornar a opção de voto criada em caso de sucesso com status 201.
 - **GET** `/poll/:id/choice`
-    - [ ]  Retorna a lista de opções de voto de uma enquete:
+    - [x]  Retorna a lista de opções de voto de uma enquete:
     
     ```jsx
     [
