@@ -63,6 +63,9 @@ export async function createOpcaoVoto(req, res){
 export async function getOpcaoVoto(req, res){
     const {id} = req.params
     try {
+        const enquete = await db.collection("enquete").find({_id: new ObjectId(id)})
+        if(!enquete) return res.sendStatus(404)
+
         const opcaoDeVoto = await db.collection("opcaoDeVoto").find({_id: new ObjectId(id)}).toArray()
         res.send(opcaoDeVoto)
     } catch (err) {
