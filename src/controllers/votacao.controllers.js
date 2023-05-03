@@ -47,6 +47,11 @@ export async function createOpcaoVoto(req, res){
     const enquete = await db.collection("enquete").find({_id: new ObjectId(id)})
     if(!enquete) return res.sendStatus(404)
 
+    const opcaoExiste = await db.collection("opcaoDeVoto").find({title})
+    if(opcaoExiste) {  return res.sendStatus(409)  }
+
+    if ((dayjs(enquete.expireAt).isBefore(dayjs()))) { return res.sendStatus(403); }
+
     try {
         await db.collection("opcaoDeVoto").insertOne({title, pollId})
         res.sendStatus(201)
