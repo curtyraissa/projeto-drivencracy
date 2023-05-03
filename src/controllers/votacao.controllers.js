@@ -17,7 +17,8 @@ export async function createEnquete(req, res){
 
 export async function getEnquete(req, res){
     try {
-
+        const enquetes = await db.collection("enquete").find().toArray()
+        res.send(enquetes)
     } catch (err) {
         res.status(500).send(err.message)
     }
@@ -27,7 +28,7 @@ export async function createOpcaoVoto(req, res){
     const {title, pollId} = req.body
 
     try {
-        await db.collection("opcaoDeVoto").insertOne({title, PollId})
+        await db.collection("opcaoDeVoto").insertOne({title, pollId})
         res.sendStatus(201)
     } catch (err) {
         res.status(500).send(err.message)
