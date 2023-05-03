@@ -44,15 +44,15 @@ export async function createOpcaoVoto(req, res){
         return res.status(422).send(errors)
     }
 
-    const enquete = await db.collection("enquete").find({_id: new ObjectId(id)})
-    if(!enquete) return res.sendStatus(404)
-
-    const opcaoExiste = await db.collection("opcaoDeVoto").find({title})
-    if(opcaoExiste) {  return res.sendStatus(409)  }
-
-    if ((dayjs(enquete.expireAt).isBefore(dayjs()))) { return res.sendStatus(403); }
-
     try {
+        const enquete = await db.collection("enquete").find({_id: new ObjectId(id)})
+        if(!enquete) return res.sendStatus(404)
+    
+        const opcaoExiste = await db.collection("opcaoDeVoto").find({title})
+        if(opcaoExiste) {  return res.sendStatus(409)  }
+    
+        if ((dayjs(enquete.expireAt).isBefore(dayjs()))) { return res.sendStatus(403) }
+
         await db.collection("opcaoDeVoto").insertOne({title, pollId})
         res.sendStatus(201)
     } catch (err) {
@@ -78,6 +78,9 @@ export async function createVoto(req, res){
     try {
         const opcaoDeVoto = await db.collection("opcaoDeVoto").find({_id: new ObjectId(id)})
         if(!opcaoDeVoto) return res.sendStatus(404)
+
+        if ((dayjs(enquete.expireAt).isBefore(dayjs()))) { return res.sendStatus(403) }
+
         await db.collection("voto").insertOne({createdAt: dayjs().format("YYYY-MM-DD HH:mm"), choiceId: new ObjectId(id)})
         res.sendStatus(201)
     } catch (err) {
