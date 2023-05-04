@@ -45,10 +45,10 @@ export async function createOpcaoVoto(req, res){
     }
 
     try {
-        const enquete = await db.collection("enquete").find({_id: new ObjectId(id)})
+        const enquete = await db.collection("enquete").findOne({_id: new ObjectId(pollId)})
         if(!enquete) return res.sendStatus(404)
     
-        const opcaoExiste = await db.collection("opcaoDeVoto").find({title})
+        const opcaoExiste = await db.collection("opcaoDeVoto").findOne({title})
         if(opcaoExiste) {  return res.sendStatus(409)  }
     
         if ((dayjs(enquete.expireAt).isBefore(dayjs()))) { return res.sendStatus(403) }
@@ -89,7 +89,11 @@ export async function createVoto(req, res){
 }
 
 export async function getResultado(req, res){
+    const {id} = req.params
     try {
+        const enquete = await db.collection("enquete").find({_id: new ObjectId(id)})
+        if(!enquete) return res.sendStatus(404)
+
 
     } catch (err) {
         res.status(500).send(err.message)
