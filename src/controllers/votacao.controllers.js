@@ -27,7 +27,7 @@ export async function createEnquete(req, res){
 
 export async function getEnquete(req, res){
     try {
-        const enquetes = await db.collection("enquete").findOne().toArray()
+        const enquetes = await db.collection("enquete").find().toArray()
         res.send(enquetes)
     } catch (err) {
         res.status(500).send(err.message)
@@ -66,7 +66,7 @@ export async function getOpcaoVoto(req, res){
         const enquete = await db.collection("enquete").findOne({_id: new ObjectId(id)})
         if(!enquete) return res.sendStatus(404)
 
-        const opcaoDeVoto = await db.collection("opcaoDeVoto").findOne({_id: new ObjectId(id)}).toArray()
+        const opcaoDeVoto = await db.collection("opcaoDeVoto").find({_id: new ObjectId(id)}).toArray()
         res.send(opcaoDeVoto)
     } catch (err) {
         res.status(500).send(err.message)
