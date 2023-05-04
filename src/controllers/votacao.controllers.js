@@ -64,12 +64,10 @@ export async function getOpcaoVoto(req, res){
     const {id} = req.params
     try {
 
-        const idEscolha = await db.collection("opcaoDeVoto").findOne({_id: new ObjectId(id)})
-
-        const enquete = await db.collection("enquete").findOne({_id: new ObjectId(idEscolha.pollId)})
+        const enquete = await db.collection("enquete").findOne({pollId: id})
         if(!enquete) return res.sendStatus(404)
 
-        const opcaoDeVoto = await db.collection("opcaoDeVoto").find({pollId: idEscolha.pollId}).toArray()
+        const opcaoDeVoto = await db.collection("opcaoDeVoto").find({pollId: id}).toArray()
         res.send(opcaoDeVoto)
     } catch (err) {
         res.status(500).send(err.message)
