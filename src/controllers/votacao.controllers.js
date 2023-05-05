@@ -133,12 +133,11 @@ export async function getResultado(req, res) {
     let results = []
 
       for (let opcao of opcoes) {
-        console.log(opcao);
         const votos = await db
         .collection("voto")
-        .find({choiceId: opcao._id})
+        .find({choiceId: opcao.id})
         .toArray();
-        let result = {title: opcao.title, votes: votos}
+        let result = {id: opcao._id, id2: opcao.id, title: opcao.title, votes: votos}
         results.push(result)
       }
 
