@@ -133,9 +133,7 @@ export async function getResultado(req, res) {
     let results = []
 
       for (let opcao of opcoes) {
-        console.log("id1: ", opcao._id,"id2: ", opcao._id.toString(), " opcao ", opcao)
         const votos = await db.collection("voto").find({choiceId: opcao._id.toString()}).toArray();
-        console.log("votos ", votos)
         let result = {title: opcao.title, votes: votos.length}
         results.push(result)
       }
@@ -153,7 +151,7 @@ export async function getResultado(req, res) {
       },
     };
 
-    res.status(201).send(results)
+    res.status(201).send(retorno)
   } catch (err) {
     res.status(500).send(err.message);
   }
