@@ -136,9 +136,9 @@ export async function getResultado(req, res) {
         console.log(opcao);
         const votos = await db
         .collection("voto")
-        .find({choiceId: opcao.id})
+        .find({choiceId: opcao._id})
         .toArray();
-        let result = {title: opcao.title, votes: votos.length}
+        let result = {title: opcao.title, votes: votos}
         results.push(result)
       }
 
