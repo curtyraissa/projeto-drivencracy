@@ -133,7 +133,7 @@ export async function getResultado(req, res) {
     let results = []
 
       for (let opcao of opcoes) {
-        console.log("id1: ", opcao._id,"id2: ", opcao._id.toString(), "id3: ", ObjectId(opcao._id), " opcao ", opcao)
+        console.log("id1: ", opcao._id,"id2: ", opcao._id.toString(), " opcao ", opcao)
         const votos = await db.collection("voto").find({choiceId: opcao._id.toString()}).toArray();
         console.log("votos ", votos)
         let result = {id: opcao._id, title: opcao.title, votes: votos}
