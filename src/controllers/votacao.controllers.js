@@ -81,9 +81,9 @@ export async function createVoto(req, res){
 
         const opcaoDeVoto = await db.collection("opcaoDeVoto").findOne({_id: new ObjectId(id)})
         if(!opcaoDeVoto) return res.sendStatus(404)
-        console.log(opcaoDeVoto.title)
+        console.log("opcao ", opcaoDeVoto.title)
 
-        const enquete = await db.collection("enquete").findOne({_id: new ObjectId(id)})
+        const enquete = await db.collection("enquete").findOne({_id: new ObjectId(opcaoDeVoto.pollId)})
         if ((dayjs(enquete.expireAt).isBefore(dayjs()))) { return res.sendStatus(403) }
         console.log(enquete.title)
         
