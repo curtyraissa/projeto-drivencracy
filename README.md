@@ -1,4 +1,4 @@
-![Imagem 1](./layout-projeto.png "Imagem 1")
+
 
 <h1 align="center">Drivencracy - Node</h1>
 
@@ -8,7 +8,7 @@
     - [x]  Versionamento usando Git é obrigatório. Crie um **repositório** no seu perfil do GitHub.
     - [x]  Faça commits a cada funcionalidade implementada.
     - [x]  Utilize dotenv.
-    - [ ]  O deploy da API deve ser feito no Render e do banco no MongoDB Atlas.
+    - [x]  O deploy da API deve ser feito no Render e do banco no MongoDB Atlas.
 - Armazenamento de dados
     - Para persistir os dados (enquete, opção de voto e voto), utilize coleções do Mongo com a biblioteca `mongodb`.
     - O formato de uma enquete deve ser:
@@ -81,8 +81,8 @@
     - Validação:
         - [x]  Uma opção de voto não pode ser inserida sem uma enquete existente, retornar status 404.
         - [x]  **Title** não pode ser uma string vazia, retornar status 422.
-        - [ ]  **Title** não pode ser repetido, retornar status 409.
-        - [ ]  Se a enquete já estiver expirado deve retornar erro com status 403.
+        - [x]  **Title** não pode ser repetido, retornar status 409.
+        - [x]  Se a enquete já estiver expirado deve retornar erro com status 403.
     - [x]  Deve retornar a opção de voto criada em caso de sucesso com status 201.
 - **GET** `/poll/:id/choice`
     - [x]  Retorna a lista de opções de voto de uma enquete:
@@ -103,16 +103,16 @@
     ]
     ```
     
-    - [ ]  Validação: caso a enquete não exista deve retornar status 404.
+    - [x]  Validação: caso a enquete não exista deve retornar status 404.
 - **POST** `/choice/:id/vote`
-    - [ ]  Não recebe nenhum dado do body da requisição. Deve registrar um voto na opção selecionada.
-    - [ ]  O voto deve armazenar a data e hora que foi criado no backend.
+    - [x]  Não recebe nenhum dado do body da requisição. Deve registrar um voto na opção selecionada.
+    - [x]  O voto deve armazenar a data e hora que foi criado no backend.
     - Validações:
-        - [ ]  Verificar se é uma opção existente, se não existir retornar 404.
-        - [ ]  Não pode ser registrado se a enquete já estiver expirado, retornar erro 403.
-    - [ ]  Retorna status 201 em caso de sucesso.
+        - [x]  Verificar se é uma opção existente, se não existir retornar 404.
+        - [x]  Não pode ser registrado se a enquete já estiver expirado, retornar erro 403.
+    - [x]  Retorna status 201 em caso de sucesso.
 - **GET** `/poll/:id/result`
-    - [ ]  Retorna o resultado de uma enquete, ou seja, a opção de voto **mais votada** na enquete até o momento, seguindo o formato sugerido:
+    - [x]  Retorna o resultado de uma enquete, ou seja, a opção de voto **mais votada** na enquete até o momento, seguindo o formato sugerido:
     
     ```jsx
     {
@@ -126,7 +126,7 @@
     }
     ```
     
-    - [ ]  Validação: caso a enquete não exista deve retornar status 404.
+    - [x]  Validação: caso a enquete não exista deve retornar status 404.
 
 ## 🛠 &nbsp;Skills
 <div align="center">
@@ -146,18 +146,16 @@
 ```zsh
 # iniciar servidor
 npm run dev
+
 # rodar banco
 mongod --dbpath ~/.mongo
 
 # matar a porta comando no MAC
 kill -9 PID
-# exemplo
-kill -9 27017
 
 # listar as postar que estao sendo usada
 lsof -i :5000
 ```
-
 
 <hr/>
 
