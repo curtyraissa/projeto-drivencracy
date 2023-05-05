@@ -136,19 +136,22 @@ export async function getResultado(req, res) {
         console.log("id1: ", opcao._id,"id2: ", opcao._id.toString(), " opcao ", opcao)
         const votos = await db.collection("voto").find({choiceId: opcao._id.toString()}).toArray();
         console.log("votos ", votos)
-        let result = {id: opcao._id, title: opcao.title, votes: votos.length}
+        let result = {title: opcao.title, votes: votos.length}
         results.push(result)
       }
-      console.log("sorted ", results.sort((a, b) => a.votes - b.votes));
-    // const retorno = {
-    //   _id: enquete._id,
-    //   title: enquete.title,
-    //   expireAt: enquete.expireAt,
-    //   result: {
-    //     title: "Javascript",
-    //     votes: 487,
-    //   },
-    // };
+
+    console.log("sorted ", results.sort((a, b) => b.votes - a.votes));
+    results = results.sort((a, b) => b.votes - a.votes)
+
+    const retorno = {
+      _id: enquete._id,
+      title: enquete.title,
+      expireAt: enquete.expireAt,
+      result: {
+        title: results[0].title,
+        votes: results[0].votes,
+      },
+    };
 
     res.status(201).send(results)
   } catch (err) {
