@@ -136,10 +136,10 @@ export async function getResultado(req, res) {
         console.log("id1: ", opcao._id,"id2: ", opcao._id.toString(), " opcao ", opcao)
         const votos = await db.collection("voto").find({choiceId: opcao._id.toString()}).toArray();
         console.log("votos ", votos)
-        let result = {id: opcao._id, title: opcao.title, votes: votos}
+        let result = {id: opcao._id, title: opcao.title, votes: votos.length}
         results.push(result)
       }
-
+      console.log("sorted ", results.sort((a, b) => a.votes - b.votes));
     // const retorno = {
     //   _id: enquete._id,
     //   title: enquete.title,
